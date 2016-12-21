@@ -7,20 +7,94 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
     <title>4aLine</title>
 
+    <style>
+        table {
+            max-width: 100%;
+            max-height: 100%;
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        
+        .Square {
+            width: 5vw;
+            height: 5vw;
+            text-align: center;
+            font-size: 0.0001px;
+            font-weight: bold;
+            font-family: Verdana;
+        }
+        
+        button .Square {
+            width: 5vw;
+            height: 5vw;
+        }
+    </style>
+    <script>
+        function startGame() {
+            document.turn = "red";
+            document.playernumber = 3;
+
+            setMessage(document.turn + " gets to start.");
+            document.getElementById("playernumber").innerText = document.playernumber + " players";
+        }
+
+        function setMessage(msg) {
+            document.getElementById("message1").innerText = msg;
+            document.getElementById("message2").innerText = msg;
+        }
+
+        function nextMove(square) {
+            if (square.innerText == "") {
+                square.innerText = document.turn;
+                square.style.background = document.turn;
+
+                switchTurn();
+            } else {
+                setMessage("That square is already used.");
+            }
+        }
+
+        function switchTurn() {
+            if (document.turn == "red") {
+                document.turn = "green";
+            } else if (document.turn == "green") {
+
+                document.turn = "blue";
+            } else if (document.turn == "blue") {
+                if (document.playernumber == 4) {
+                    document.turn = "yellow";
+                } else {
+                    document.turn = "red";
+                }
+            } else {
+                document.turn = "red";
+            }
+
+            setMessage("It's " + document.turn + "'s turn!");
+        }
+
+        function setplayernumber() {
+            if (document.playernumber == 3) {
+                document.playernumber = 4;
+            } else {
+                document.playernumber = 3;
+            }
+
+            document.getElementById("playernumber").innerText = document.playernumber + " players";
+        }
+    </script>
 </head>
 
-<body bgcolor="#FFA347">
-    <div align="center">
-        <h1>Willkommen bei 4aLine</h1>
-        <img src="favicon.png" alt="Bild nicht vorhanden" width="30%" height="auto">
+<body onload="startGame();">
+    <div id="index" align="center">
+        <h1>Willkommen bei 4aLine
+        </h1>
+        <img src="favicon.png" alt="4aLine Icon" width="30%" height="auto">
         <p>Gebe deine Raumnummer ein, um mit Freunden zu spielen:</p>
-        <input id="raumnummer" type="number" min="100" max="999" step="1" value="175">
-        <a href="game.html"><button>play</button></a>
+        <input id="input" type="number" placeholder="Raumnummer" min="100" max="999" step="1">
+        <button id="button"> play</button>
         <br>
-        <p>oder:</p>
-        <br>
-        <a href="game.html"><button>nur auf diesem Gerät spielen</button></a>
-        <br>
+        <h1 id="test"> </h1>
         <br>
         <p>Sende hier deine Kommentare oder Verbesserungsvorschläge:</p>
         <br>
@@ -30,7 +104,553 @@
             <input type="submit">
         </form>
 
+
+
+
     </div>
+    <!--<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
+    <div id="game" style="display: none">
+
+        <h1 id="test2"></h1>
+        <h1 align="center">4 a Line</h1>
+        <button type="button" id="button_player" style="height: auto; width: auto;" onclick="location.reload()">new game</button><br>
+        <br>
+        <button type="button" id="button_player" style="height: auto; width: auto;" onclick="setplayernumber();">change playernumber</button>
+        <div id="playernumber" style="font-size: 4vw;">playernumber</div>
+        <div id="message1" style="font-size: 4vw;">messages will go here</div>
+
+        <div align="center">
+            <table border="2px solid black">
+                <tbody>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);" id="button"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+                    <tr>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                        <td class="Square" onclick="nextMove(this);"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="message2" style="font-size: 4vw;">messages will go here</div>
+            <table>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                    <td><button type="button" class="Square" onclick="nextMove(this);"></button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="jquery-3.1.1.slim.min.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
 </body>
 
 </html>
